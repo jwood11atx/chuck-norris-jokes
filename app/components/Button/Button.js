@@ -7,7 +7,6 @@ const Button = (props) => {
 
   const linkCheck = () => {
     let refs = props.jokecount.refs;
-    console.log(refs);
     if(Object.keys(refs).length !== 0){
       return refs.numField.value ? false : true;
     }

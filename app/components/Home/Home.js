@@ -3,7 +3,6 @@ import Controls from "../Controls/Controls";
 import Jokes from "../Jokes/Jokes";
 
 const Home = (props) => {
-  // console.log(props);
   return(
     <div>
       <Controls handleChange={props.handleChange}

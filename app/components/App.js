@@ -7,7 +7,10 @@ class App extends React.Component {
     super();
     this.state = {
       data: [],
-      num: ""
+      num: "",
+      selected: "off",
+      firstName: "Chuck",
+      lastName: "Norris"
     }
   };
 
@@ -25,7 +28,8 @@ class App extends React.Component {
 
   loadNewJokes(num){
     num++;
-    fetch(`https://api.icndb.com/jokes/random/${num}?escape=javascript`)
+    const parentalConrol = this.state.selected === "on" ? "&limitTo=[explicit]" : "";
+    fetch(`https://api.icndb.com/jokes/random/${num}?escape=javascript${parentalConrol}`)
           .then(response => response.json())
           .then(json => {
             this.setState({data: json.value});
@@ -48,14 +52,29 @@ class App extends React.Component {
 
   childCheck(){
     if(this.props.children){
-      return React.cloneElement(this.props.children, {handleChange: this.handleChange.bind(this), handleNumChange: this.handleNumChange.bind(this), data: this.state.data, num: this.state.num})
+      return React.cloneElement(this.props.children, {handleChange: this.handleChange.bind(this), handleNumChange: this.handleNumChange.bind(this), radioToggle: this.radioToggle.bind(this), changeName: this.changeName.bind(this), state: this.state})
     }
+  }
+
+  radioToggle(e){
+    e.target.value === "On" ?
+    this.setState({selected: "on"})
+    :
+    this.setState({selected: "off"})
+  };
+
+  changeName(name){
+    name.split(" ");
+    this.setState({
+      firstName: name[0],
+      lastName: name[1]
+    })
   }
 
   render(){
     return (
       <div>
-        <Header/>
+        <Header {...this.props}/>
         <p>{this.state.data[0] ? this.state.data[0].joke : "welcome!" }</p>
         {this.childCheck()}
       </div>
