@@ -1,7 +1,6 @@
 import React from 'react'
 
 import Header from "./Header/Header";
-import Controls from "./Controls/Controls";
 
 class App extends React.Component {
   constructor(){
@@ -39,10 +38,6 @@ class App extends React.Component {
 
   handleChange(link, num){
     switch (link) {
-      case "settings":
-        return this.loadSettings();
-      case "favorites":
-        return this.loadFavorites();
       case "jokes":
         return this.loadNewJokes(num);
       default:
@@ -52,7 +47,7 @@ class App extends React.Component {
 
   childCheck(){
     if(this.props.children){
-      return React.cloneElement(this.props.children, this.state)
+      return React.cloneElement(this.props.children, {handleChange: this.handleChange.bind(this), handleNumChange: this.handleNumChange.bind(this), data: this.state.data})
     } else {
       return "Click Get Jokes!"
     }
@@ -63,8 +58,6 @@ class App extends React.Component {
       <div>
         <Header/>
         <p>{this.state.data[0] ? this.state.data[0].joke : "welcome!" }</p>
-        <Controls handleChange={this.handleChange.bind(this)}
-                  handleNumChange={this.handleNumChange.bind(this)}/>
         {this.childCheck()}
       </div>
     );
