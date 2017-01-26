@@ -3,7 +3,10 @@ import Button from '../Button/Button';
 
 class Controls extends React.Component {
 
+
   render(){
+    console.log(this);
+
     return(
       <div>
         <input type="number" ref="numField" placeholder="#" onChange={(e) =>  this.props.handleNumChange(e.target.value)}/>

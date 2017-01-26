@@ -3,17 +3,25 @@ import React from 'react'
 import { render } from 'react-dom'
 import './styles';
 
-import { Router, Route, IndexRoute, browserHistory } from "react-router";
+import { Router, Route, IndexRoute, browserHistory, IndexRedirect } from "react-router";
 
 import App from "./components/App";
+import Home from "./components/Home/Home";
 import Jokes from "./components/Jokes/Jokes";
+import Settings from "./components/Settings/Settings";
+
 
 
 const router = (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
+      <IndexRedirect to='/home' component={Home} />
+      <Route path="/home" component={Home} />
       <Route path="jokes">
         <IndexRoute component={Jokes}></IndexRoute>
+      </Route>
+      <Route path="settings">
+        <IndexRoute component={Settings}></IndexRoute>
       </Route>
     </Route>
   </Router>
