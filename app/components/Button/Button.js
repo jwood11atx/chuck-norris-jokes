@@ -5,25 +5,24 @@ import "./button-style"
 
 const Button = (props) => {
 
-  const inputCheck = (e) => {
-    let num = props.jokecount.refs.numField.value;
-    if (num) {
-        props.handleChange(props.link, num)
+  const linkCheck = () => {
+    let refs = props.jokecount.refs;
+    if(Object.keys(refs).length !== 0){
+      return refs.numField.value ? false : true;
     }
-    //  num ?
-    //   props.handleChange(props.link, num)
-    // :
-    //   e.preventDefault();
   }
 
   return props.handleChange ?
-      <Link to={props.link}
-            className={props.type}
-            onClick={(e) => inputCheck(e)}
-            disabled>{props.label}</Link>
+        <Link to={props.link}
+          className={props.link}
+          onClick={() =>   props.handleChange(props.link, props.jokecount.refs.numField.value)}>
+          <button disabled={linkCheck()}>
+            {props.label}
+          </button>
+        </Link>
     :
       <Link to={props.link}
-            className={props.type}>{props.label}</Link>;
+            className={props.link}>{props.label}</Link>;
 
   }
 
