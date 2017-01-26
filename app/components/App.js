@@ -7,9 +7,14 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      data: []
+      data: [],
+      num: null
     }
-  }
+  };
+
+  componentDidMount(){
+    this.loadNewJokes(0);
+  };
 
   loadSettings(){
     console.log("loading settings!");
@@ -20,15 +25,17 @@ class App extends React.Component {
   };
 
   loadNewJokes(num){
-    console.log("loading new jokes!");
-    let data;
-    if(num)
-    fetch(`https://api.icndb.com/jokes/random/${num}/?escape=javascript`)
+    num++;
+    fetch(`https://api.icndb.com/jokes/random/${num}?escape=javascript`)
           .then(response => response.json())
           .then(json => {
             this.setState({data: json.value});
         });
   };
+
+  handleNumChange(userInput){
+    this.setState({num: userInput})
+  }
 
   handleChange(link, num){
     switch (link) {
@@ -44,20 +51,21 @@ class App extends React.Component {
   };
 
   childCheck(){
-    if(this.props.children)
+    if(this.props.children){
       return React.cloneElement(this.props.children, this.state)
+    } else {
+      return "Click Get Jokes!"
+    }
   }
-
 
   render(){
     return (
       <div>
         <Header/>
-        <p>new world</p>
-        <Controls handleChange={this.handleChange.bind(this)}/>
-        <div className="jokes-container">
-          {this.childCheck()}
-        </div>
+        <p>{this.state.data[0] ? this.state.data[0].joke : "welcome!" }</p>
+        <Controls handleChange={this.handleChange.bind(this)}
+                  handleNumChange={this.handleNumChange.bind(this)}/>
+        {this.childCheck()}
       </div>
     );
   }
