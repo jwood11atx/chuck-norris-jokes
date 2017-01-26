@@ -8,7 +8,7 @@ const Jokes = (props) => {
   return (
     <div className="jokes-field">
       <Controls handleChange={props.handleChange}
-        handleNumChange={props.handleNumChange}/>
+        handleNumChange={props.handleNumChange} num={props.num}/>
       {props.data.slice(1).map((joke, i) =>
         <Joke key={joke.id} i={i} joke={joke.joke}/>)}
     </div>

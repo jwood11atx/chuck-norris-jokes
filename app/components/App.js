@@ -7,7 +7,7 @@ class App extends React.Component {
     super();
     this.state = {
       data: [],
-      num: null
+      num: ""
     }
   };
 
@@ -37,6 +37,7 @@ class App extends React.Component {
   }
 
   handleChange(link, num){
+    num = num || 0;
     switch (link) {
       case "jokes":
         return this.loadNewJokes(num);
@@ -47,9 +48,7 @@ class App extends React.Component {
 
   childCheck(){
     if(this.props.children){
-      return React.cloneElement(this.props.children, {handleChange: this.handleChange.bind(this), handleNumChange: this.handleNumChange.bind(this), data: this.state.data})
-    } else {
-      return "Click Get Jokes!"
+      return React.cloneElement(this.props.children, {handleChange: this.handleChange.bind(this), handleNumChange: this.handleNumChange.bind(this), data: this.state.data, num: this.state.num})
     }
   }
 

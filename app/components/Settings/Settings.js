@@ -1,9 +1,13 @@
 import React from "react";
+import Button from '../Button/Button';
 
 
 const Settings = () => {
   return(
-    <div>test settings</div>
+    <div>
+      <p>test settings</p>
+      <Button link="jokes" label="Jokes"/>
+    </div>
   )
 }
 

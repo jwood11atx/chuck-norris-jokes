@@ -5,8 +5,12 @@ import Jokes from "../Jokes/Jokes";
 const Home = (props) => {
   // console.log(props);
   return(
-    <Controls handleChange={props.handleChange}
-      handleNumChange={props.handleNumChange}/>
+    <div>
+      <Controls handleChange={props.handleChange}
+        handleNumChange={props.handleNumChange}
+        num={props.num}/>
+      <h2>Click Get Jokes!</h2>
+    </div>
   )
 };
 
