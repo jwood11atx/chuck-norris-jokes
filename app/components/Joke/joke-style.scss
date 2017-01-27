@@ -5,7 +5,7 @@
   background: rgba(0,0,0,0.2);
   margin: 5px;
   flex: 1;
-  min-width: 25vw;
+  min-width: 40vw;
   max-width: 50vw;
   min-height: 50px;
   text-align: center;
@@ -17,9 +17,10 @@
 }
 
 .star-btn {
-  float: right;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
   margin: 0;
-  bottom: 0;
   color: white;
 }
 
