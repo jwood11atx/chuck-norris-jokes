@@ -1,5 +1,12 @@
 @import "../../variables";
 
-.Header {
-  color: $headertext
+.header {
+  display: inline-block;
+  width: 100vw;
+  text-align: center;
+}
+
+.main-header {
+  text-decoration: none;
+  color: black;
 }

@@ -3,18 +3,43 @@ button {
 }
 
 .settings {
+  background: gray;
   height: 60px;
   width: 60px;
   border-radius: 100px;
   text-align: center;
+  color: black;
 }
 
 .jokes {
   height: 50px;
-  width: 100px;
+  width: 200px;
   margin: 5px;
+  border-radius: 5px;
 }
 
 .favorites {
   display: block;
+  height: 35px;
+  width: 100px;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.link{
+  color: rgba(0,0,0,0)
+}
+
+.Set {
+  height: 35px;
+  width: 35px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.Reset {
+  height: 35px;
+  width: 45px;
+  margin: 5px;
+  border-radius: 5px;
 }

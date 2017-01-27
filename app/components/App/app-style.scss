@@ -1,0 +1,15 @@
+@import "../../variables";
+
+.app {
+  display: inline-block;
+  text-align: center;
+}
+
+.single-joke {
+  border: 1px solid black;
+  max-width: 50vw;
+  min-height: 25px;
+  padding: 10px;
+  margin: 10px auto;
+
+}

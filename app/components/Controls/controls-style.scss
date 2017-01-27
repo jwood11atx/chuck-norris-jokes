@@ -1,8 +1,17 @@
 @import "../../variables";
 
-.favorites-field {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
+.controls-field {
+  display: inline-block;
+  width: 100vw;
+  text-align: center;
+}
+
+.num-field {
+  width: 40px;
+  height: 45px;
+  border-style: none;
+  border-radius: 5px;
+  font-size: 25px;
+  text-align: center;
+  margin: 5px;
 }
