@@ -32,8 +32,6 @@ const Button = (props) => {
     }
   }
 
-  console.log(props);
-
   return props.handleChange ?
       <Link to={props.link}
             className="link"

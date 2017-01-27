@@ -1,8 +1,9 @@
 @import "../../variables";
+@import "../../reset";
+
 
 .controls-field {
-  display: inline-block;
-  width: 100vw;
+  width: 100%;
   text-align: center;
 }
 
