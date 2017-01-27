@@ -1,0 +1,14 @@
+@import "../../variables";
+@import "../../reset";
+
+
+.app {
+  text-align: center;
+}
+
+.single-joke {
+  border: 1px dotted white;
+  padding: 25px;
+  max-width: 50vw;
+  margin: 15px auto;
+}

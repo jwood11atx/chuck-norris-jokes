@@ -1,6 +1,7 @@
 import React from 'react'
+import Header from "../Header/Header";
+import './app-style';
 
-import Header from "./Header/Header";
 
 class App extends React.Component {
   constructor(){
@@ -133,7 +134,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <Header {...this.props}/>
-        <p>{this.state.data[0] ? this.state.data[0].joke : "welcome!" }</p>
+        <p className="single-joke">{this.state.data[0] ? this.state.data[0].joke : "welcome!" }</p>
         {this.childCheck()}
       </div>
     );

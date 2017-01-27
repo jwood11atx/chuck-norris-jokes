@@ -17,21 +17,34 @@ const Jokes = (props) => {
                       loadFavorites={props.loadFavorites}
                       num={props.state.num}
                       favIDs={props.state.favoritesIDs}/>
-            {props.state.data.slice(1).map((joke) =>
-              <Joke key={joke.id} id={joke.id}
+            <div className="jokes-container">
+              {props.state.data.length > 1 ?
+                 props.state.data.slice(1).map((joke) =>
+                  <Joke key={joke.id} id={joke.id}
                     joke={joke.joke}
                     updateFavorites={props.updateFavorites}
-                    favoritesIDsCheck={props.favoritesIDsCheck}/>)}
-           </div>
+                    favoritesIDsCheck={props.favoritesIDsCheck}/>)
+                :
+                  <h2>Click Get Jokes!</h2>
+                  }
+                </div>
+            </div>
     )
   } else {
     return(
-      <div className="jokes-field">
-        {props.state.favorites.map((joke) =>
+      <div className="jokes-container">
+        {props.state.favorites.length > 0 ?
+          props.state.favorites.map((joke) =>
           <Joke key={joke.id} id={joke.id}
                 joke={joke.joke}
                 updateFavorites={props.updateFavorites}
-                favoritesIDsCheck={props.favoritesIDsCheck}/>)}
+                favoritesIDsCheck={props.favoritesIDsCheck}/>)
+        :
+      <div>
+        <img src="http://i.imgur.com/R3QZBQE.gif"/>
+        <h2>No favorites???</h2>
+      </div>
+        }
       </div>
     )
   }

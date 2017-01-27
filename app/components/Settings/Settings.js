@@ -1,5 +1,6 @@
 import React from "react";
 import Button from '../Button/Button';
+import "./settings-styles";
 
 
 const Settings = (props) => {
@@ -13,19 +14,32 @@ const Settings = (props) => {
   return(
     <div>
       <div>
-        <p>Set Name: </p>
+        <label>Set Name: </label>
         <input type="text"
                className="name-input"
                placeholder="example: John Doe"
                onChange={(e) => props.changeName(e.target.value)}
                />
         <Button handleChange={props.changeName}
+                link="jokes"
                 name={document.querySelector(".name-input")}
                 label="Set" />
+
+        <Button handleChange={props.changeName}
+                name={document.querySelector(".name-input")}
+                label="Reset" />
       </div>
 
       <form>
         <p>Adult Mode: </p>
+        {/* <div className="switch-container">
+          <article>On</article>
+          <label className="switch">
+            <input type="checkbox" />
+            <div className="slider round"></div>
+          </label>
+          <article>Off</article>
+        </div> */}
         <input type="radio"
                className="onRadio"
                value="On"

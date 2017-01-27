@@ -27,22 +27,27 @@ const Button = (props) => {
       props.favIDs.forEach(id => {
         props.handleChange(id)
       })
+    } else if (props.label === "Reset") {
+      props.name.value = "";
     }
   }
 
-
   return props.handleChange ?
       <Link to={props.link}
-            className={props.link}
+            className="link"
             onClick={() =>
               functionNameCheck()}>
-        <button disabled={linkCheck()}>
+        <button className={`${props.name} ${props.link} ${props.label}`}
+                disabled={linkCheck()}>
           {props.label}
         </button>
       </Link>
     :
-      <Link to={props.link}
-            className={props.link}>{props.label}</Link>;
+      <Link to={props.link} className="link">
+        <button className={`${props.name} ${props.link} ${props.label}`}>
+          {props.label}
+        </button>
+      </Link>;
 
   }
 

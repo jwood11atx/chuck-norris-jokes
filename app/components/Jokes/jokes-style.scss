@@ -1,8 +1,15 @@
 @import "../../variables";
 
-.jokes-field {
+.jokes-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  max-width: 80vw;
+  margin: 10px auto;
+}
+
+.controls {
+  display: inline-block;
+  width: 50vw;
 }

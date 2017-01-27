@@ -5,13 +5,10 @@ import './styles';
 
 import { Router, Route, IndexRoute, browserHistory, IndexRedirect } from "react-router";
 
-import App from "./components/App";
+import App from "./components/App/App";
 import Home from "./components/Home/Home";
 import Jokes from "./components/Jokes/Jokes";
 import Settings from "./components/Settings/Settings";
-import Favorites from "./components/Favorites/Favorites";
-
-
 
 
 const router = (

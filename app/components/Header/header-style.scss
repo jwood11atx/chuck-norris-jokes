@@ -1,5 +1,23 @@
 @import "../../variables";
+@import "../../reset";
 
-.Header {
-  color: $headertext
+
+.header {
+  margin: 0;
+  padding: 50px 0;
+  width: 100%;
+  text-align: center;
+  background: rgba(255,255,255,0.3)
+}
+
+.main-header {
+  display: inline-block;
+  margin: 0;
+}
+
+.title-container {
+  text-decoration: none;
+  color: white;
+  font-family: "Bungee Shade", sans-serif;
+  font-size: 50px;
 }
