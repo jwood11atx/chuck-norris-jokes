@@ -9,6 +9,8 @@ import App from "./components/App";
 import Home from "./components/Home/Home";
 import Jokes from "./components/Jokes/Jokes";
 import Settings from "./components/Settings/Settings";
+import Favorites from "./components/Favorites/Favorites";
+
 
 
 
@@ -22,6 +24,9 @@ const router = (
       </Route>
       <Route path="settings">
         <IndexRoute component={Settings}></IndexRoute>
+      </Route>
+      <Route path="favorites">
+        <IndexRoute component={Jokes}></IndexRoute>
       </Route>
     </Route>
   </Router>

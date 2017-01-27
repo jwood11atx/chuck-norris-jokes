@@ -1,6 +1,7 @@
 @import "../../variables";
 
 .joke {
+  position: relative;
   border: 1px solid black;
   margin: 5px;
   flex: 1;
@@ -12,4 +13,15 @@
 
 .joke-text {
   vertical-align: middle;
+}
+
+.star-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 0;
+  color: white;
+}
+
+.clicked {
+  color: green;
 }
