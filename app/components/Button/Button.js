@@ -32,20 +32,21 @@ const Button = (props) => {
     }
   }
 
+  console.log(props);
 
   return props.handleChange ?
       <Link to={props.link}
             className="link"
             onClick={() =>
               functionNameCheck()}>
-        <button className={`${props.link} ${props.label}`}
+        <button className={`${props.name} ${props.link} ${props.label}`}
                 disabled={linkCheck()}>
           {props.label}
         </button>
       </Link>
     :
       <Link to={props.link} className="link">
-        <button className={`${props.link} ${props.label}`}>
+        <button className={`${props.name} ${props.link} ${props.label}`}>
           {props.label}
         </button>
       </Link>;

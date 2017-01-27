@@ -1,12 +1,19 @@
 @import "../../variables";
 
 .header {
-  display: inline-block;
-  width: 100vw;
+  height: 200px;
+  width: 100%;
   text-align: center;
+  background: rgba(255,255,255,0.3)
 }
 
 .main-header {
+  margin: 0;
+}
+
+.title-container {
   text-decoration: none;
-  color: black;
+  color: white;
+  font-family: "Bungee Shade", sans-serif;
+  font-size: 25px;
 }

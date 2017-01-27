@@ -13,11 +13,17 @@ const Header = (props) => {
 
     switch (link) {
       case "home":
-        return <Button link="settings" label="Settings" />;
+        return <Button link="settings"
+                       label="Settings"
+                       name={link}/>;
       case "favorites":
-        return <Button link="jokes" label="Jokes"/>
+        return <Button link="jokes"
+                       label="Jokes"
+                       name={link}/>
       case "settings":
-        return <Button link="jokes" label="Jokes"/>
+        return <Button link="jokes"
+                       label="Jokes"
+                       name={link}/>
         break;
       default:
       return <Button link="settings" label="Settings" />;
@@ -26,7 +32,9 @@ const Header = (props) => {
 
   return (
     <div className="header">
-      <Link to={"home"} className="main-header"><h1>Chuck Norris Joke Machine</h1></Link>
+      <Link to={"home"} className="title-container">
+        <h1 className="main-header" >Chuck Norris Joke Machine</h1>
+      </Link>
       {linkCheck()}
     </div>
   );

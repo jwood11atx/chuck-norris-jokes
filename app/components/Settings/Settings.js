@@ -14,7 +14,7 @@ const Settings = (props) => {
   return(
     <div>
       <div>
-        <p>Set Name: </p>
+        <label>Set Name: </label>
         <input type="text"
                className="name-input"
                placeholder="example: John Doe"
