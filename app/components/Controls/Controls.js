@@ -1,5 +1,6 @@
 import React from "react";
 import Button from '../Button/Button';
+import { browserHistory } from "react-router"
 import './controls-style';
 
 
@@ -18,10 +19,14 @@ class Controls extends React.Component {
         <input type="number"
                ref="numField"
                className="num-field"
-               placeholder="#"
+               onKeyPress={e => {
+                 if (e.nativeEvent.key === "Enter") {
+                   this.props.handleChange("jokes", this.props.num)
+                   browserHistory.push("/jokes")
+                 }}}
                onChange={(e) => this.props.handleNumChange(e.target.value)}
                value={this.props.num}/>
-
+        <br/>
         <Button link="favorites"
                 label="Favorites"
                 favIDs={this.props.favIDs}
