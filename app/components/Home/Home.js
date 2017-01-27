@@ -1,5 +1,6 @@
 import React from "react";
 import Controls from "../Controls/Controls";
+import './home-style';
 
 const Home = (props) => {
   return(
