@@ -21,10 +21,15 @@ const Button = (props) => {
       :
         props.handleChange("Chuck Norris")
 
-    } else {
+    } else if (props.label === "Get Jokes!"){
       props.handleChange(props.link, props.jokecount.refs.numField.value)
+    } else if (props.label === "Favorites") {
+      props.favIDs.forEach(id => {
+        props.handleChange(id)
+      })
     }
   }
+
 
   return props.handleChange ?
       <Link to={props.link}

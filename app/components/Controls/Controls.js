@@ -6,7 +6,7 @@ class Controls extends React.Component {
 
   render(){
     return(
-      <div>
+      <div className={"controls-field"}>
         <input type="number" ref="numField" placeholder="#" onChange={(e) =>  this.props.handleNumChange(e.target.value)} value={this.props.num}/>
 
         <Button link="jokes"
@@ -15,7 +15,11 @@ class Controls extends React.Component {
                 label="Get Jokes!"
                 disabled="true"/>
 
-        <Button link="favorites" label="Favorites" />
+        <Button link="favorites"
+                label="Favorites"
+                favIDs={this.props.favIDs}
+                handleChange={this.props.loadFavorites}
+              />
 
       </div>
     )

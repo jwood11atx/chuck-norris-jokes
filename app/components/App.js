@@ -11,23 +11,22 @@ class App extends React.Component {
       selected: "off",
       firstName: "Chuck",
       lastName: "Norris",
+      favoritesIDs: [],
       favorites: []
     }
   };
 
+  componentWillMount(){
+    if (localStorage.length !== 0) {
+      this.setState({favoritesIDs: JSON.parse(localStorage.getItem("favorites"))})
+    }
+  }
+
   componentDidMount(){
     this.loadNewJokes(0);
-    if (localStorage.length !== 0) {
-      this.setState({favorites: JSON.parse(localStorage.getItem("favorites"))})
-    }
-  };
-
-  loadSettings(){
-    console.log("loading settings!");
-  };
-
-  loadFavorites(){
-    console.log("loading favorites!");
+    this.state.favoritesIDs.forEach(id => {
+      this.loadFavorites(id);
+    })
   };
 
   loadNewJokes(num){
@@ -64,7 +63,8 @@ class App extends React.Component {
         radioToggle: this.radioToggle.bind(this),
         changeName: this.changeName.bind(this),
         updateFavorites: this.updateFavorites.bind(this),
-        favoritesCheck: this.favoritesCheck.bind(this),
+        favoritesIDsCheck: this.favoritesIDsCheck.bind(this),
+        loadFavorites: this.loadFavorites.bind(this),
         state: this.state})
     }
   }
@@ -84,33 +84,52 @@ class App extends React.Component {
     })
   }
 
-  updateFavorites(e) {
+  loadFavorites(num) {
     let favs = this.state.favorites;
-    if (e.target.classList.contains("clicked")) {
-      favs.push(e.target.id)
-      this.setState({favorites: favs})
-    } else {
-      favs = favs.filter(fav => fav !== e.target.id);
-      this.setState({favorites: favs})
+    if (favs.length < this.state.favoritesIDs.length) {
+      fetch(`http://api.icndb.com/jokes/${num}`)
+        .then(response => response.json())
+        .then(json => {
+          favs.push(json.value)
+          this.setState({favorites: favs});
+      });
     }
-    localStorage.setItem("favorites", JSON.stringify(favs))
   }
 
-  favoritesCheck(e) {
-    if (this.state.favorites.indexOf(e.id) !== -1) {
+  updateFavorites(e) {
+    let favsID = this.state.favoritesIDs;
+    let favs = this.state.favorites;
+
+    if (e.target.classList.contains("clicked")) {
+      favsID.push(e.target.id)
+      this.setState({favoritesIDs: favsID})
+      this.loadFavorites(e.target.id)
+    } else {
+      let newArr = favsID.filter(id => {
+        if(id !== e.target.id){
+          return id;
+        }
+      });
+      this.setState({favoritesIDs: newArr});
+
+      let arr = favs.filter((fav, i) => {
+        if (fav.id != Number(e.target.id)) {
+          return fav;
+        }
+      });
+      this.setState({favorites: arr});
+    };
+  }
+
+  favoritesIDsCheck(e) {
+    if (this.state.favoritesIDs.indexOf(e.toString()) !== -1) {
       return "clicked"
     }
   }
 
-  loadFavorites() {
-    fetch(`https://api.icndb.com/jokes/random/${num}?escape=javascript&firstName=${firstName}&lastName=${lastName}&${parentalConrol}`)
-        .then(response => response.json())
-        .then(json => {
-          this.setState({data: json.value});
-      });
-  }
-
   render(){
+    localStorage.setItem("favorites", JSON.stringify(this.state.favoritesIDs));
+
     return (
       <div className="app">
         <Header {...this.props}/>

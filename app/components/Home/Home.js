@@ -1,6 +1,5 @@
 import React from "react";
 import Controls from "../Controls/Controls";
-import Jokes from "../Jokes/Jokes";
 
 const Home = (props) => {
   return(
@@ -8,7 +7,9 @@ const Home = (props) => {
       <Controls
         handleChange={props.handleChange}
         handleNumChange={props.handleNumChange}
-        num={props.state.num}/>
+        loadFavorites={props.loadFavorites}
+        num={props.state.num}
+        favIDs={props.state.favoritesIDs}/>
       <h2>Click Get Jokes!</h2>
     </div>
   )

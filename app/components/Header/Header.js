@@ -9,10 +9,15 @@ const Header = (props) => {
     let { pathname } = props.location;
     let link = pathname[0] === "/" ? pathname.slice(1) : pathname;
 
-    return link === "settings" ?
-    <Button link="jokes" label="Jokes"/>
-    : 
-    <Button link="settings" label="Settings" />
+    // return link === "settings" ?
+    // <Button link="jokes" label="Jokes"/>
+    // :
+    // <Button link="settings" label="Settings" />
+    if (link === "settings" || "favorites") {
+      return <Button link="jokes" label="Jokes"/>
+    } else {
+      return <Button link="settings" label="Settings" />
+    }
   }
 
   return (
