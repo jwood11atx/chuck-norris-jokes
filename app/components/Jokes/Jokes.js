@@ -30,7 +30,7 @@ const Jokes = (props) => {
                 </div>
             </div>
     )
-  } else {
+  } else if (link === "favorites"){
     return(
       <div className="jokes-container">
         {props.state.favorites.length > 0 ?

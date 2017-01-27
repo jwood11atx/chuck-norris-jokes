@@ -47,6 +47,8 @@ class App extends React.Component {
   }
 
   handleChange(link, num){
+    console.log(link, num);
+    console.log("woo!");
     num = num || 0;
     switch (link) {
       case "jokes":
