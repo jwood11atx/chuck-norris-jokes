@@ -10,12 +10,16 @@ class App extends React.Component {
       num: "",
       selected: "off",
       firstName: "Chuck",
-      lastName: "Norris"
+      lastName: "Norris",
+      favorites: []
     }
   };
 
   componentDidMount(){
     this.loadNewJokes(0);
+    if (localStorage.length !== 0) {
+      this.setState({favorites: JSON.parse(localStorage.getItem("favorites"))})
+    }
   };
 
   loadSettings(){
@@ -27,9 +31,11 @@ class App extends React.Component {
   };
 
   loadNewJokes(num){
+    let { selected, firstName, lastName } = this.state
     num++;
-    const parentalConrol = this.state.selected === "on" ? "&limitTo=[explicit]" : "";
-    fetch(`https://api.icndb.com/jokes/random/${num}?escape=javascript${parentalConrol}`)
+    const parentalConrol = selected === "on" ?
+    "&limitTo=[explicit]" : "";
+    fetch(`https://api.icndb.com/jokes/random/${num}?escape=javascript&firstName=${firstName}&lastName=${lastName}&${parentalConrol}`)
           .then(response => response.json())
           .then(json => {
             this.setState({data: json.value});
@@ -52,7 +58,14 @@ class App extends React.Component {
 
   childCheck(){
     if(this.props.children){
-      return React.cloneElement(this.props.children, {handleChange: this.handleChange.bind(this), handleNumChange: this.handleNumChange.bind(this), radioToggle: this.radioToggle.bind(this), changeName: this.changeName.bind(this), state: this.state})
+      return React.cloneElement(this.props.children, {
+        handleChange: this.handleChange.bind(this),
+        handleNumChange: this.handleNumChange.bind(this),
+        radioToggle: this.radioToggle.bind(this),
+        changeName: this.changeName.bind(this),
+        updateFavorites: this.updateFavorites.bind(this),
+        favoritesCheck: this.favoritesCheck.bind(this),
+        state: this.state})
     }
   }
 
@@ -64,16 +77,42 @@ class App extends React.Component {
   };
 
   changeName(name){
-    name.split(" ");
+    name = name.split(" ");
     this.setState({
-      firstName: name[0],
-      lastName: name[1]
+      firstName: name[0] || "Chuck",
+      lastName: name[1] || "Norris"
     })
+  }
+
+  updateFavorites(e) {
+    let favs = this.state.favorites;
+    if (e.target.classList.contains("clicked")) {
+      favs.push(e.target.id)
+      this.setState({favorites: favs})
+    } else {
+      favs = favs.filter(fav => fav !== e.target.id);
+      this.setState({favorites: favs})
+    }
+    localStorage.setItem("favorites", JSON.stringify(favs))
+  }
+
+  favoritesCheck(e) {
+    if (this.state.favorites.indexOf(e.id) !== -1) {
+      return "clicked"
+    }
+  }
+
+  loadFavorites() {
+    fetch(`https://api.icndb.com/jokes/random/${num}?escape=javascript&firstName=${firstName}&lastName=${lastName}&${parentalConrol}`)
+        .then(response => response.json())
+        .then(json => {
+          this.setState({data: json.value});
+      });
   }
 
   render(){
     return (
-      <div>
+      <div className="app">
         <Header {...this.props}/>
         <p>{this.state.data[0] ? this.state.data[0].joke : "welcome!" }</p>
         {this.childCheck()}

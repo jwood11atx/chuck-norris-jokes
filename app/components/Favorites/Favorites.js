@@ -1,12 +1,12 @@
 import React from "react";
 import Controls from "../Controls/Controls";
 import Joke from "../Joke/Joke";
-import './jokes-style';
+import './favorites-style';
 
 
-const Jokes = (props) => {
+const Favorites = (props) => {
   return (
-    <div className="jokes-field">
+    <div className="favorites-field">
       <Controls handleChange={props.handleChange}
         handleNumChange={props.handleNumChange} num={props.num}/>
       {props.state.data.slice(1).map((joke, i) =>
@@ -18,4 +18,4 @@ const Jokes = (props) => {
   )
 }
 
-export default Jokes;
+export default Favorites;

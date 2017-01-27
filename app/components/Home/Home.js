@@ -5,9 +5,10 @@ import Jokes from "../Jokes/Jokes";
 const Home = (props) => {
   return(
     <div>
-      <Controls handleChange={props.handleChange}
+      <Controls
+        handleChange={props.handleChange}
         handleNumChange={props.handleNumChange}
-        num={props.num}/>
+        num={props.state.num}/>
       <h2>Click Get Jokes!</h2>
     </div>
   )
